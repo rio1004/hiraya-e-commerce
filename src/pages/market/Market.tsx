@@ -1,53 +1,35 @@
 import Header from "@/layout/merchant-layout/Header/Header";
-import { SlArrowUp } from "react-icons/sl";
-import { CiHeart } from "react-icons/ci";
-import { CiShoppingCart } from "react-icons/ci";
+import Filters from "./Filters";
+import CardContainer from "./CardContainer";
 const Market = () => {
   return (
-    <>
+    <div className="pb-6">
       <Header />
-      <div>
-        <p>Women's Wallet</p>
-        <p>
-          Inspired by Filipino craftsmanship, Hiraya’s wallets are handmade
-          using real leather from an official Marikina leather store.
-          Thoughtfully designed to keep your essentials organised, each piece
-          blends timeless style with everyday function—perfect to carry on its
-          own or keep in your handbag.
-        </p>
-      </div>
-      <div>
-        <ul>
+      <section className="flex flex-col items-center mt-6 text-center">
+        <div className="w-2xl flex flex-col items-center gap-4">
+          {" "}
+          <p className="text-2xl">Women's Wallet</p>
+          <p>
+            Inspired by Filipino craftsmanship, Hiraya’s wallets are handmade
+            using real leather from an official Marikina leather store.
+            Thoughtfully designed to keep your essentials organised, each piece
+            blends timeless style with everyday function—perfect to carry on its
+            own or keep in your handbag.
+          </p>
+        </div>
+      </section>
+      <section className="flex border-[#1E1E1E] border-y-2 py-4 justify-center items-center mt-6">
+        <ul className="flex gap-4">
           <li>Long Wallets</li>
           <li>Short Wallets</li>
           <li>Card Holders</li>
         </ul>
-      </div>
-      <div>
-        <aside>
-          <div>
-            <p>Availability</p>
-            <SlArrowUp />
-          </div>
-        </aside>
-        <div>
-          <div>
-            <img src="/katha.jpg" alt="" />
-            <div>
-              <div>
-                {" "}
-                <p>HUSAI WALLET</p>
-                <CiHeart />
-              </div>
-              <p>₱ 650.00</p>
-            </div>
-            <button>
-              Add to Bag <CiShoppingCart />
-            </button>
-          </div>
-        </div>
-      </div>
-    </>
+      </section>
+      <section className="flex mt-6 mx-8 gap-25">
+        <Filters />
+        <CardContainer />
+      </section>
+    </div>
   );
 };
 

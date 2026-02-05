@@ -1,3 +1,4 @@
+import Button from "@/components/Button";
 import HeartButton from "@/components/HeartButton";
 import { CiShoppingCart } from "react-icons/ci";
 
@@ -21,9 +22,9 @@ const Card = ({ src, title, price, liked = false }: Props) => {
         </div>
         <p>₱ {price.toFixed(2)}</p>
 
-        <button className="flex items-center border border-black gap-1 mt-3 w-fit self-center px-6 text-sm py-2 ">
+        <Button>
           Add to Bag <CiShoppingCart size={20} />
-        </button>
+        </Button>
       </div>
     </div>
   );

@@ -6,12 +6,14 @@ const cardOptions = [
     title: "KATHA WALLET",
     price: 290,
     liked: false,
+    texture: "suede",
   },
   {
     src: "./dari.jpg",
     title: "DARI WALLET",
     price: 290,
     liked: false,
+    texture: "fullGrain",
   },
   {
     src: "./husai.jpg",
@@ -45,7 +47,7 @@ const CardContainer = () => {
       />
     ));
   return (
-    <div className="grid  gap-5 md:grid-cols-3 lg:grid-cols-4">{cards()}</div>
+    <div className="grid  gap-5 grid-cols-3 lg:grid-cols-4">{cards()}</div>
   );
 };
 

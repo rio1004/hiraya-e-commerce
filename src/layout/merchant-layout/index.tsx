@@ -1,11 +1,15 @@
-import Header from "./Header";
+import { Outlet } from "react-router";
+import Header from "./Header/Header";
 
-const index = () => {
+const MainLayout = () => {
   return (
     <>
-      <Header />
+      <div className="pb-6">
+        <Header />
+        <Outlet />
+      </div>
     </>
   );
 };
 
-export default index;
+export default MainLayout;

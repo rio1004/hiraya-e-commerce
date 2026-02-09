@@ -1,5 +1,7 @@
 import Button from "@/components/Button";
 import HeartButton from "@/components/HeartButton";
+import { useMerchant } from "@/stores";
+import { useEffect } from "react";
 import { CiShoppingCart } from "react-icons/ci";
 
 type Props = {
@@ -10,6 +12,8 @@ type Props = {
 };
 
 const Card = ({ src, title, price, liked = false }: Props) => {
+  const { setCartQty } = useMerchant();
+
   return (
     <div className="font-light">
       <img src={src} alt="" />
@@ -22,7 +26,7 @@ const Card = ({ src, title, price, liked = false }: Props) => {
         </div>
         <p>₱ {price.toFixed(2)}</p>
 
-        <Button>
+        <Button onClick={() => setCartQty({ qty: 1, totalAmount: price })}>
           Add to Bag <CiShoppingCart size={20} />
         </Button>
       </div>

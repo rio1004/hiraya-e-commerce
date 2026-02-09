@@ -1,10 +1,8 @@
-import Header from "@/layout/merchant-layout/Header/Header";
 import Filters from "./Filters";
 import CardContainer from "./CardContainer";
 const Market = () => {
   return (
-    <div className="pb-6">
-      <Header />
+    <>
       <section className="flex flex-col items-center mt-6 text-center">
         <div className="w-2xl flex flex-col items-center gap-4">
           {" "}
@@ -29,7 +27,7 @@ const Market = () => {
         <Filters />
         <CardContainer />
       </section>
-    </div>
+    </>
   );
 };
 

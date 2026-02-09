@@ -1,7 +1,7 @@
 import { FiCheck } from "react-icons/fi";
 
 type Props = {
-  label: string;
+  label?: string;
   isChecked: boolean;
   onChangeChecked: () => void;
   colorFilter?: string;
@@ -23,7 +23,7 @@ const CheckBox = ({
       />
 
       <span
-        className="
+        className=" bg-white
             h-5 w-5  border border-gray-400
             flex items-center justify-center
             transition
@@ -39,7 +39,7 @@ const CheckBox = ({
         ></div>
       )}
 
-      <p>{label}</p>
+      {label && <p>{label}</p>}
     </label>
   );
 };

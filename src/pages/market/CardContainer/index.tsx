@@ -4,33 +4,33 @@ const cardOptions = [
   {
     src: "./katha.jpg",
     title: "KATHA WALLET",
-    price: 290,
+    price: 123,
     liked: false,
     texture: "suede",
   },
   {
     src: "./dari.jpg",
     title: "DARI WALLET",
-    price: 290,
+    price: 432,
     liked: false,
     texture: "fullGrain",
   },
   {
     src: "./husai.jpg",
     title: "HUSAI WALLET",
-    price: 290,
+    price: 890,
     liked: false,
   },
   {
     src: "./sinag.jpg",
     title: "SINAG WALLET",
-    price: 290,
+    price: 876,
     liked: true,
   },
   {
     src: "./mayumi.jpg",
     title: "MAYUMI WALLET",
-    price: 290,
+    price: 235,
     liked: false,
   },
 ];

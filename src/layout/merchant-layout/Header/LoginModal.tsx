@@ -1,6 +1,8 @@
 import Button from "@/components/Button";
 import Input from "@/components/Input";
 import Modal from "@/components/Modal";
+import { auth, googleProvider } from "@/lib/firebase";
+import { signInWithPopup } from "firebase/auth";
 import type { Dispatch, SetStateAction } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { IoLogoFacebook } from "react-icons/io5";
@@ -11,6 +13,19 @@ type LoginProps = {
 };
 
 const LoginModal = ({ open, onClose }: LoginProps) => {
+  const handleGoogleLogin = async () => {
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      const user = result.user;
+      const token = await user.getIdToken();
+      console.log("Google user:", user);
+      console.log("ID token:", token);
+
+      onClose(false);
+    } catch (error) {
+      console.error("Google login error:", error);
+    }
+  };
   return (
     <Modal onClose={() => onClose(false)} open={open}>
       <p className="text-3xl">Sign in via Password</p>
@@ -28,7 +43,11 @@ const LoginModal = ({ open, onClose }: LoginProps) => {
         <span className="h-px w-full bg-ring text-ring"></span>
       </div>
       <div className="flex gap-4">
-        <Button className="w-50! gap-2" variant="outline">
+        <Button
+          className="w-50! gap-2"
+          variant="outline"
+          onClick={handleGoogleLogin}
+        >
           <FcGoogle size={24} />
           Google
         </Button>

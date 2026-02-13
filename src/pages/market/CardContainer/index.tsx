@@ -1,4 +1,7 @@
+import { useEffect, useState } from "react";
 import Card from "./Card";
+import { ProductService } from "@/api/services/product.service";
+import type { ProductsResponse } from "@/api/services/types/product";
 
 const cardOptions = [
   {
@@ -36,16 +39,28 @@ const cardOptions = [
 ];
 
 const CardContainer = () => {
+  const { getProducts } = ProductService;
+  const [products, setProducts] = useState<ProductsResponse>([]);
   const cards = () =>
-    cardOptions.map((item) => (
+    products.map((item) => (
       <Card
-        price={item.price}
-        src={item.src}
-        title={item.title}
-        key={item.title}
-        liked={item.liked}
+        price={Number(item.variants[0].price)}
+        src={item.variants[0].imgSrc}
+        title={item.name}
+        key={item.id}
+        liked={false}
       />
     ));
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const res = await getProducts();
+      console.log(res, "lkjlkj");
+      setProducts(res.products);
+    };
+    fetchProducts();
+  }, []);
+
   return (
     <div className="grid  gap-5 grid-cols-3 lg:grid-cols-4">{cards()}</div>
   );

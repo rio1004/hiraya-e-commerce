@@ -5,11 +5,23 @@ import LoginModal from "./LoginModal";
 import { useState } from "react";
 import { useMerchant } from "@/stores";
 import { useNavigate } from "react-router";
+import PopupProfile from "./PopupProfile";
+import { useAuthStore } from "@/stores/auth/useAuth";
 
 const Header = () => {
   const [open, setOpen] = useState<boolean>(false);
+  const [openPopup, setOpenPopup] = useState<boolean>(false);
+  const { token } = useAuthStore();
   const { cartQty } = useMerchant();
   const navigate = useNavigate();
+
+  const openProfile = () => {
+    if (token) {
+      setOpenPopup(true);
+      return;
+    }
+    setOpen(true);
+  };
   return (
     <div>
       <LoginModal onClose={setOpen} open={open} />
@@ -23,7 +35,7 @@ const Header = () => {
         </p>
         <p></p>
       </div>
-      <header className="flex justify-between px-8 py-2 shadow-[0_4px_4px_rgba(0,0,0,0.25)]">
+      <header className="flex justify-between px-8 py-2 shadow-card">
         <p
           className="font-bold text text-3xl cursor-pointer text-[#814A2F]"
           onClick={() => navigate("/")}
@@ -42,7 +54,13 @@ const Header = () => {
               <p>{cartQty.qty}</p>
             </div>
           </div>
-          <AiOutlineUser size={25} onClick={() => setOpen(true)} />
+          <div className="relative">
+            <PopupProfile
+              open={openPopup}
+              onClose={() => setOpenPopup(false)}
+            />
+            <AiOutlineUser size={25} onClick={openProfile} />
+          </div>
         </div>
       </header>
     </div>

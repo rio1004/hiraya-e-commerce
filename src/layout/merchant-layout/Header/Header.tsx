@@ -2,17 +2,21 @@ import { CiSearch } from "react-icons/ci";
 import { PiBagLight } from "react-icons/pi";
 import { AiOutlineUser } from "react-icons/ai";
 import LoginModal from "./LoginModal";
-import { useState } from "react";
-import { useMerchant } from "@/stores";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import PopupProfile from "./PopupProfile";
 import { useAuthStore } from "@/stores/auth/useAuth";
+import { useCart } from "@/stores/cart/useCart";
+import { IoCheckmark } from "react-icons/io5";
+import { IoCloseOutline } from "react-icons/io5";
+import Toast from "@/components/Toast";
 
 const Header = () => {
-  const [open, setOpen] = useState<boolean>(false);
   const [openPopup, setOpenPopup] = useState<boolean>(false);
+  const open = useAuthStore((state) => state.openLogin);
+  const setOpen = useAuthStore((state) => state.setOpenLogin);
   const { token } = useAuthStore();
-  const { cartQty } = useMerchant();
+  const { cartQty, fetchCartQty } = useCart();
   const navigate = useNavigate();
 
   const openProfile = () => {
@@ -22,9 +26,21 @@ const Header = () => {
     }
     setOpen(true);
   };
+  const goToCart = () => {
+    if (!token) {
+      setOpen(true);
+      return;
+    }
+    navigate("/cart");
+  };
+  useEffect(() => {
+    fetchCartQty();
+  }, []);
+
   return (
     <div>
       <LoginModal onClose={setOpen} open={open} />
+
       <div className="bg-[#D9D9D9] flex justify-between items-center py-1 ">
         <p className="opacity-0 hidden md:block ">Hiraya Leather</p>
         <p>
@@ -48,10 +64,10 @@ const Header = () => {
         </ul>
         <div className="flex items-center gap-2 cursor-pointer">
           <CiSearch size={25} />
-          <div className="relative" onClick={() => navigate("/cart")}>
+          <div className="relative" onClick={goToCart}>
             <PiBagLight size={25} />
             <div className="rounded-full text-center w-3 h-3 text-white bg-[#E74C3C] text-[8px] absolute bottom-0 right-0">
-              <p>{cartQty.qty}</p>
+              <p>{cartQty}</p>
             </div>
           </div>
           <div className="relative">

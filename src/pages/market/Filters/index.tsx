@@ -62,7 +62,7 @@ const Filters = () => {
     ));
 
   return (
-    <aside className="flex flex-col gap-4">
+    <aside className="lg:flex flex-col gap-4 hidden">
       <Filter title="AVAILABILITY">{availability()}</Filter>
       <Filter title="TEXTURE">{textures()}</Filter>
       <Filter title="COLOR">{colors()}</Filter>

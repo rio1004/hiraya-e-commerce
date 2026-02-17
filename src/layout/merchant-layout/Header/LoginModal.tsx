@@ -4,6 +4,7 @@ import Input from "@/components/Input";
 import Modal from "@/components/Modal";
 import { auth, facebookProvider, googleProvider } from "@/lib/firebase";
 import { useAuthStore } from "@/stores/auth/useAuth";
+import { useCart } from "@/stores/cart/useCart";
 import { signInWithPopup } from "firebase/auth";
 import type { Dispatch, SetStateAction } from "react";
 import { FcGoogle } from "react-icons/fc";
@@ -11,12 +12,13 @@ import { IoLogoFacebook } from "react-icons/io5";
 
 type LoginProps = {
   open: boolean;
-  onClose: Dispatch<SetStateAction<boolean>>;
+  onClose: (value:boolean) => void;
 };
 
 const LoginModal = ({ open, onClose }: LoginProps) => {
   const { verifyFirebase } = AuthServices;
   const { setUserAuth } = useAuthStore();
+  const { fetchCartQty } = useCart();
   const handleGoogleLogin = async () => {
     try {
       const result = await signInWithPopup(auth, googleProvider);
@@ -27,6 +29,7 @@ const LoginModal = ({ open, onClose }: LoginProps) => {
       const res = await verifyFirebase(token);
       console.log(res);
       setUserAuth(user, token);
+      fetchCartQty();
       onClose(false);
     } catch (error) {
       console.error("Google login error:", error);

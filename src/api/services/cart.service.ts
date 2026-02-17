@@ -1,6 +1,5 @@
 import { axiosInstance } from "../axiosInstance";
 import { API_ENDPOINTS } from "../endpoints";
-import type { WalletData } from "./types/cart";
 
 export const CartServices = {
   getCartQty: async () => {
@@ -15,9 +14,8 @@ export const CartServices = {
     return res.data;
   },
   getCartItems: async () => {
-    const res = await axiosInstance.get<WalletData>(
-      API_ENDPOINTS.CART.GET_CART_ITEMS,
-    );
+    const res = await axiosInstance.get(API_ENDPOINTS.CART.GET_CART_ITEMS);
+    console.log(res);
     return res.data;
   },
   updateCartItem: async (variantId: string, quantity: number) => {

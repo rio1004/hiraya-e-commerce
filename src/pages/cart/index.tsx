@@ -2,13 +2,12 @@ import CheckBox from "@/components/CheckBox";
 import { useEffect, useState } from "react";
 import CartCard from "./CartCard";
 import CardFooter from "./CardFooter";
-import { CartServices } from "@/api/services/cart.service";
-import type { CartContainer, CartItem } from "@/api/services/types/cart";
 import { useCart } from "@/stores/cart/useCart";
 
 const Cart = () => {
   const [all, setAll] = useState<boolean>(false);
-  const { fetchCartItems, cartItems } = useCart();
+  const cartItems = useCart((state) => state.cartItems);
+  const fetchCartItems = useCart((state) => state.fetchCartItems);
   const onChangeChecked = () => {
     console.log(all);
   };

@@ -22,18 +22,12 @@ const color = {
   green: "#0A4C46",
 };
 const Card = ({ src, title, price, liked = false }: Props) => {
-  const { setCartQty } = useCart();
-  const { getCartQty } = CartServices;
+  const { fetchCartQty } = useCart();
   const [activeIndex, setActiveIndex] = useState(0);
   const { addToCart } = CartServices;
 
   const activeId = src[activeIndex]?.id;
   const activeColor = src[activeIndex]?.color;
-
-  const fetchCartQty = async () => {
-    const res = await getCartQty();
-    setCartQty(res.qty.totalQuantity);
-  };
 
   const onAddToCart = async () => {
     try {

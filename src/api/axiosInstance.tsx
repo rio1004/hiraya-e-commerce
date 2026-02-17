@@ -21,8 +21,11 @@ axiosInstance.interceptors.request.use((config) => {
 axiosInstance.interceptors.response.use(
   (response) => response,
   (error) => {
+    const setOpenLogin = useAuthStore.getState().setOpenLogin;
     if (error.response?.status === 401) {
       useAuthStore.getState().logout();
+      setOpenLogin(true);
+      return;
     }
     return Promise.reject(error);
   },

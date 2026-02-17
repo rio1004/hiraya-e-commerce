@@ -9,8 +9,9 @@ import { useAuthStore } from "@/stores/auth/useAuth";
 import { useCart } from "@/stores/cart/useCart";
 
 const Header = () => {
-  const [open, setOpen] = useState<boolean>(false);
   const [openPopup, setOpenPopup] = useState<boolean>(false);
+  const open = useAuthStore((state) => state.openLogin);
+  const setOpen = useAuthStore((state) => state.setOpenLogin);
   const { token } = useAuthStore();
   const { cartQty, fetchCartQty } = useCart();
   const navigate = useNavigate();
@@ -22,9 +23,17 @@ const Header = () => {
     }
     setOpen(true);
   };
+  const goToCart = () => {
+    if (!token) {
+      setOpen(true);
+      return;
+    }
+    navigate("/cart");
+  };
   useEffect(() => {
     fetchCartQty();
   }, []);
+
   return (
     <div>
       <LoginModal onClose={setOpen} open={open} />
@@ -51,7 +60,7 @@ const Header = () => {
         </ul>
         <div className="flex items-center gap-2 cursor-pointer">
           <CiSearch size={25} />
-          <div className="relative" onClick={() => navigate("/cart")}>
+          <div className="relative" onClick={goToCart}>
             <PiBagLight size={25} />
             <div className="rounded-full text-center w-3 h-3 text-white bg-[#E74C3C] text-[8px] absolute bottom-0 right-0">
               <p>{cartQty}</p>

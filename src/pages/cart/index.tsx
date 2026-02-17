@@ -1,12 +1,29 @@
 import CheckBox from "@/components/CheckBox";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CartCard from "./CartCard";
 import CardFooter from "./CardFooter";
+import { CartServices } from "@/api/services/cart.service";
+import type { Item, WalletData } from "@/api/services/types/cart";
 
 const Cart = () => {
   const [all, setAll] = useState<boolean>(false);
+  const [cartItems, setCartItems] = useState<Item[]>();
+  const { getCartItems } = CartServices;
   const onChangeChecked = () => {
     console.log(all);
+  };
+
+  useEffect(() => {
+    const fetchCartItems = async () => {
+      const res = await getCartItems();
+      setCartItems(res.cart.items);
+    };
+    fetchCartItems();
+  }, []);
+  const renderCartItems = () => {
+    return cartItems?.map((item) => (
+      <CartCard key={item.id} variant={item.variant} quantity={item.quantity} />
+    ));
   };
   return (
     <div className="flex justify-center flex-col items-center text-center">
@@ -29,9 +46,7 @@ const Cart = () => {
             <p>Actions</p>
           </div>
         </div>
-        <CartCard />
-        <CartCard />
-        <CartCard />
+        {renderCartItems()}
         <CardFooter />
       </div>
     </div>

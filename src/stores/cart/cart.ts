@@ -8,9 +8,10 @@ export type cartItemType = {
   name: string;
 };
 
-export type merchantType = {
-  cartQty: cartQtyType;
-  setCartQty: (value: cartQtyType) => void;
+export type CartType = {
+  cartQty: number;
+  setCartQty: (value: number) => void;
   cartItem: cartItemType[];
   setCartItem: (value: cartItemType) => void;
+  fetchCartQty: () => void;
 };

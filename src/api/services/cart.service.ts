@@ -1,0 +1,30 @@
+import { axiosInstance } from "../axiosInstance";
+import { API_ENDPOINTS } from "../endpoints";
+import type { WalletData } from "./types/cart";
+
+export const CartServices = {
+  getCartQty: async () => {
+    const res = await axiosInstance.get(API_ENDPOINTS.CART.GET_QTY);
+    return res.data;
+  },
+  addToCart: async (variantId: string, quantity: number) => {
+    const res = await axiosInstance.post(API_ENDPOINTS.CART.ADD_TO_CART, {
+      variantId,
+      quantity,
+    });
+    return res.data;
+  },
+  getCartItems: async () => {
+    const res = await axiosInstance.get<WalletData>(
+      API_ENDPOINTS.CART.GET_CART_ITEMS,
+    );
+    return res.data;
+  },
+  updateCartItem: async (variantId: string, quantity: number) => {
+    const res = await axiosInstance.put(API_ENDPOINTS.CART.UPDATE_CART_ITEMS, {
+      variantId,
+      quantity,
+    });
+    return res.data;
+  },
+};

@@ -27,4 +27,10 @@ export const CartServices = {
     });
     return res.data;
   },
+  deleteCartItem: async (variantId: string) => {
+    const res = await axiosInstance.delete(
+      API_ENDPOINTS.CART.DELETE_CART_ITEM(variantId),
+    );
+    return res;
+  },
 };

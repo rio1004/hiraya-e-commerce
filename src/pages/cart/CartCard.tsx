@@ -1,6 +1,7 @@
 import { CartServices } from "@/api/services/cart.service";
 import type { CartItem } from "@/api/services/types/cart";
 import CheckBox from "@/components/CheckBox";
+import { useCart } from "@/stores/cart/useCart";
 import { useRef, useState } from "react";
 import { CiTrash } from "react-icons/ci";
 
@@ -11,7 +12,8 @@ const CartCard = (cartItem: CartItem) => {
     (Number(cartItem.variant.price) * cartItem.quantity).toFixed(2),
   );
   const [qty, setQty] = useState<number>(cartItem.quantity);
-  const { updateCartItem } = CartServices;
+  const { fetchCartQty, fetchCartItems } = useCart();
+  const { updateCartItem, deleteCartItem } = CartServices;
   const onChangedChecked = () => console.log;
 
   const debouncedUpdate = (variantId: string, quantity: number) => {
@@ -25,7 +27,7 @@ const CartCard = (cartItem: CartItem) => {
 
         if (res.cart.success) {
           const newQty = res.cart.message.quantity;
-
+          fetchCartQty();
           setQty(newQty);
           setTotalPrice((Number(cartItem.variant.price) * newQty).toFixed(2));
         }
@@ -45,6 +47,15 @@ const CartCard = (cartItem: CartItem) => {
     const newQty = qty > 1 ? qty - 1 : 1;
     setQty(newQty);
     debouncedUpdate(cartItem.variant.id, newQty);
+  };
+
+  const onDeleteCartItem = async (id: string) => {
+    try {
+      const res = await deleteCartItem(id);
+      fetchCartItems();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -83,7 +94,10 @@ const CartCard = (cartItem: CartItem) => {
       <p>₱ {totalPrice}</p>
       <div className="flex items-center justify-center">
         {" "}
-        <CiTrash size={24} />
+        <CiTrash
+          size={24}
+          onClick={() => onDeleteCartItem(cartItem.variant.id)}
+        />
       </div>
     </div>
   );

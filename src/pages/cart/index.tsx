@@ -3,26 +3,27 @@ import { useEffect, useState } from "react";
 import CartCard from "./CartCard";
 import CardFooter from "./CardFooter";
 import { CartServices } from "@/api/services/cart.service";
-import type { Item, WalletData } from "@/api/services/types/cart";
+import type { CartContainer, CartItem } from "@/api/services/types/cart";
+import { useCart } from "@/stores/cart/useCart";
 
 const Cart = () => {
   const [all, setAll] = useState<boolean>(false);
-  const [cartItems, setCartItems] = useState<Item[]>();
-  const { getCartItems } = CartServices;
+  const { fetchCartItems, cartItems } = useCart();
   const onChangeChecked = () => {
     console.log(all);
   };
 
   useEffect(() => {
-    const fetchCartItems = async () => {
-      const res = await getCartItems();
-      setCartItems(res.cart.items);
-    };
     fetchCartItems();
   }, []);
   const renderCartItems = () => {
+    console.log(cartItems, "IIIII");
     return cartItems?.map((item) => (
-      <CartCard key={item.id} variant={item.variant} quantity={item.quantity} />
+      <CartCard
+        key={item.variant.id}
+        variant={item.variant}
+        quantity={item.quantity}
+      />
     ));
   };
   return (

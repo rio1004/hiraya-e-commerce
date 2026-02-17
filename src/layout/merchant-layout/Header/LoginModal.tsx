@@ -12,7 +12,7 @@ import { IoLogoFacebook } from "react-icons/io5";
 
 type LoginProps = {
   open: boolean;
-  onClose: Dispatch<SetStateAction<boolean>>;
+  onClose: (value:boolean) => void;
 };
 
 const LoginModal = ({ open, onClose }: LoginProps) => {

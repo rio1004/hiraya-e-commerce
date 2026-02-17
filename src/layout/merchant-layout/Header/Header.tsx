@@ -7,6 +7,9 @@ import { useNavigate } from "react-router";
 import PopupProfile from "./PopupProfile";
 import { useAuthStore } from "@/stores/auth/useAuth";
 import { useCart } from "@/stores/cart/useCart";
+import { IoCheckmark } from "react-icons/io5";
+import { IoCloseOutline } from "react-icons/io5";
+import Toast from "@/components/Toast";
 
 const Header = () => {
   const [openPopup, setOpenPopup] = useState<boolean>(false);
@@ -37,6 +40,7 @@ const Header = () => {
   return (
     <div>
       <LoginModal onClose={setOpen} open={open} />
+
       <div className="bg-[#D9D9D9] flex justify-between items-center py-1 ">
         <p className="opacity-0 hidden md:block ">Hiraya Leather</p>
         <p>

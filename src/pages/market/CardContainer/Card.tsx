@@ -6,6 +6,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { useState } from "react";
 import { useCart } from "@/stores/cart/useCart";
+import { useToast } from "@/stores/toast/useToast";
 type Props = {
   src: {
     id: string;
@@ -25,6 +26,7 @@ const Card = ({ src, title, price, liked = false }: Props) => {
   const { fetchCartQty } = useCart();
   const [activeIndex, setActiveIndex] = useState(0);
   const { addToCart } = CartServices;
+  const { showToast } = useToast();
 
   const activeId = src[activeIndex]?.id;
   const activeColor = src[activeIndex]?.color;
@@ -33,6 +35,7 @@ const Card = ({ src, title, price, liked = false }: Props) => {
     try {
       const res = await addToCart(activeId, 1);
       if (res.success) {
+        showToast("Successfully added to the cart");
         fetchCartQty();
         return;
       }

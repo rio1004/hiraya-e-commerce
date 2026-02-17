@@ -51,7 +51,7 @@ const CartCard = (cartItem: CartItem) => {
 
   const onDeleteCartItem = async (id: string) => {
     try {
-      const res = await deleteCartItem(id);
+      await deleteCartItem(id);
       fetchCartItems();
     } catch (error) {
       console.log(error);
@@ -92,11 +92,12 @@ const CartCard = (cartItem: CartItem) => {
         </button>
       </div>
       <p>₱ {totalPrice}</p>
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center cursor-pointer ">
         {" "}
         <CiTrash
           size={24}
           onClick={() => onDeleteCartItem(cartItem.variant.id)}
+          className="hover:text-red-600"
         />
       </div>
     </div>

@@ -1,6 +1,7 @@
 import Filters from "./Filters";
 import CardContainer from "./CardContainer";
 const Market = () => {
+  console.log(import.meta.env.VITE_API_URL);
   return (
     <>
       <section className="flex flex-col items-center mt-6 text-center">

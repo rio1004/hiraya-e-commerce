@@ -7,21 +7,20 @@ import "swiper/css";
 import { useState } from "react";
 import { useCart } from "@/stores/cart/useCart";
 import { useToast } from "@/stores/toast/useToast";
+import type { ProductVariant } from "@/api/services/types/product";
 type Props = {
-  src: {
-    id: string;
-    imgSrc: string;
-    color: string;
-  }[];
+  src: ProductVariant[];
   title: string;
   price: number;
   liked?: boolean;
 };
-const color = {
+const colorMap = {
   brown: "#814A2F",
   red: "#B31616",
   green: "#0A4C46",
-};
+} as const;
+export type ColorKey = keyof typeof colorMap;
+
 const Card = ({ src, title, price, liked = false }: Props) => {
   const { fetchCartQty } = useCart();
   const [activeIndex, setActiveIndex] = useState(0);
@@ -61,7 +60,7 @@ const Card = ({ src, title, price, liked = false }: Props) => {
               <div
                 key={item.id}
                 style={{
-                  background: color[item.color.toLowerCase()],
+                  background: colorMap[item.color],
                   border:
                     activeColor.toLowerCase() == item.color.toLowerCase()
                       ? "2px solid white"

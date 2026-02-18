@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import Card from "./Card";
 import { ProductService } from "@/api/services/product.service";
-import type { ProductsResponse } from "@/api/services/types/product";
+import type { Product } from "@/api/services/types/product";
 
 const CardContainer = () => {
   const { getProducts } = ProductService;
-  const [products, setProducts] = useState<ProductsResponse>([]);
+  const [products, setProducts] = useState<Product[]>([]);
   const cards = () =>
     products.map((item) => {
       return (

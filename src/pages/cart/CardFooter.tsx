@@ -3,7 +3,7 @@ import { useState } from "react";
 
 const CardFooter = () => {
   const [isChecked, setIsChecked] = useState<boolean>(false);
-  const onChangedChecked = () => console.log;
+  const onChangedChecked = () => setIsChecked(!isChecked);
   return (
     <div className="fixed bottom-0 left-0   w-full flex justify-center items-end ">
       <div className="lg:w-[990px] border-t border-l border-r py-7 px-5 flex justify-between bg-white">

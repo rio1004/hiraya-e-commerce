@@ -1,5 +1,5 @@
 import { type ComponentProps } from "react";
-
+import { CgSpinnerAlt } from "react-icons/cg";
 type ButtonVariant = "primary" | "outline" | "ghost";
 
 const VARIANTS: Record<ButtonVariant, string> = {
@@ -16,14 +16,22 @@ const Button = ({
   children,
   className = "",
   variant = "primary",
+  loading = false,
   ...props
 }: ButtonProps) => {
   return (
     <button
       {...props}
-      className={`flex items-center justify-center border border-black gap-1 min-h-8 mt-3 w-fit self-center px-6 text-sm py-2  cursor-pointer   transition-all ${VARIANTS[variant]}  ${className}`}
+      className={`relative flex items-center justify-center border border-black gap-1 min-h-8 mt-3 w-fit self-center px-6 text-sm py-2  cursor-pointer   transition-all ${VARIANTS[variant]}  ${className}`}
     >
-      {children}
+      <div className="flex" style={{ opacity: loading ? 0 : 1 }}>
+        {children}
+      </div>
+      {loading && (
+        <div className="absolute animate-spin">
+          <CgSpinnerAlt />
+        </div>
+      )}
     </button>
   );
 };

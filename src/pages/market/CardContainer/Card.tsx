@@ -18,12 +18,14 @@ const colorMap = {
   brown: "#814A2F",
   red: "#B31616",
   green: "#0A4C46",
+  black: "#1e1e1e",
 } as const;
 export type ColorKey = keyof typeof colorMap;
 
 const Card = ({ src, title, price, liked = false }: Props) => {
   const { fetchCartQty } = useCart();
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const { addToCart } = CartServices;
   const { showToast } = useToast();
 
@@ -31,6 +33,7 @@ const Card = ({ src, title, price, liked = false }: Props) => {
   const activeColor = src[activeIndex]?.color;
 
   const onAddToCart = async () => {
+    setIsLoading(true);
     try {
       const res = await addToCart(activeId, 1);
       if (res.success) {
@@ -40,6 +43,8 @@ const Card = ({ src, title, price, liked = false }: Props) => {
       }
     } catch (error: any) {
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -86,7 +91,7 @@ const Card = ({ src, title, price, liked = false }: Props) => {
         </div>
         <p>₱ {price.toFixed(2)}</p>
 
-        <Button onClick={onAddToCart}>
+        <Button onClick={onAddToCart} loading={isLoading}>
           Add to Bag <CiShoppingCart size={20} />
         </Button>
       </div>

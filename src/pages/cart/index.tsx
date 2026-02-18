@@ -3,11 +3,13 @@ import { useEffect, useState } from "react";
 import CartCard from "./CartCard";
 import CardFooter from "./CardFooter";
 import { useCart } from "@/stores/cart/useCart";
+import { ImSpinner } from "react-icons/im";
 
 const Cart = () => {
   const [all, setAll] = useState<boolean>(false);
   const cartItems = useCart((state) => state.cartItems);
   const fetchCartItems = useCart((state) => state.fetchCartItems);
+  const cartLoading = useCart((state) => state.cartLoading);
   const onChangeChecked = () => {
     setAll(!all);
   };
@@ -26,9 +28,9 @@ const Cart = () => {
     ));
   };
   return (
-    <div className="flex justify-center flex-col items-center text-center">
+    <div className="flex justify-center flex-col items-center text-center ">
       <p className="text-3xl py-5">Shopping Bag</p>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 pb-20">
         <div className="lg:w-[990px] px-5 py-2 bg-[#D9D9D9]">
           <div className="grid grid-cols-6 font-light">
             <div className="flex gap-2 col-span-2">
@@ -46,7 +48,12 @@ const Cart = () => {
             <p>Actions</p>
           </div>
         </div>
-        {renderCartItems()}
+
+        {cartLoading ? (
+          <ImSpinner className="animate-spin self-center mt-20" size={40} />
+        ) : (
+          renderCartItems()
+        )}
         <CardFooter />
       </div>
     </div>

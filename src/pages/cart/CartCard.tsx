@@ -14,7 +14,7 @@ const CartCard = (cartItem: CartItem) => {
   const [qty, setQty] = useState<number>(cartItem.quantity);
   const { fetchCartQty, fetchCartItems } = useCart();
   const { updateCartItem, deleteCartItem } = CartServices;
-  const onChangedChecked = () => console.log;
+  const onChangedChecked = () => setIsChecked(!isChecked);
 
   const debouncedUpdate = (variantId: string, quantity: number) => {
     if (debounceRef.current) {

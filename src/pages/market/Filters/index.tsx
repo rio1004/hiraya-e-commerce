@@ -16,11 +16,11 @@ const Filters = () => {
     smooth: false,
     fullGrain: false,
   });
-  const [colorCheckMap, setColorCheckMap] = useState<Record<string, boolean>>({
-    brown: false,
-    red: false,
-    black: false,
-  });
+  // const [colorCheckMap, setColorCheckMap] = useState<Record<string, boolean>>({
+  //   brown: false,
+  //   red: false,
+  //   black: false,
+  // });
 
   const toggleCheckBox = (
     id: string,

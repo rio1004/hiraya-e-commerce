@@ -9,7 +9,7 @@ const Cart = () => {
   const cartItems = useCart((state) => state.cartItems);
   const fetchCartItems = useCart((state) => state.fetchCartItems);
   const onChangeChecked = () => {
-    console.log(all);
+    setAll(!all);
   };
 
   useEffect(() => {

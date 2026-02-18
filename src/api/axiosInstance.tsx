@@ -1,11 +1,11 @@
-import axios from "axios";
+import axios, { type InternalAxiosRequestConfig } from "axios";
 import { useAuthStore } from "@/stores/auth/useAuth";
 export const axiosInstance = axios.create({
   baseURL: "/api",
   timeout: 30000,
 });
 
-axiosInstance.interceptors.request.use((config) => {
+axiosInstance.interceptors.request.use((config: InternalAxiosRequestConfig) => {
   try {
     const token = useAuthStore.getState().token;
 
@@ -14,7 +14,7 @@ axiosInstance.interceptors.request.use((config) => {
     }
     return config;
   } catch (error) {
-    Promise.reject(error);
+    return Promise.reject(error);
   }
 });
 

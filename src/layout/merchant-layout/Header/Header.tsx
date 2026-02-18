@@ -7,9 +7,6 @@ import { useNavigate } from "react-router";
 import PopupProfile from "./PopupProfile";
 import { useAuthStore } from "@/stores/auth/useAuth";
 import { useCart } from "@/stores/cart/useCart";
-import { IoCheckmark } from "react-icons/io5";
-import { IoCloseOutline } from "react-icons/io5";
-import Toast from "@/components/Toast";
 
 const Header = () => {
   const [openPopup, setOpenPopup] = useState<boolean>(false);

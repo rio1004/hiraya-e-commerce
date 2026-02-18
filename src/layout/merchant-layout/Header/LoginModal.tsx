@@ -3,16 +3,16 @@ import Button from "@/components/Button";
 import Input from "@/components/Input";
 import Modal from "@/components/Modal";
 import { auth, facebookProvider, googleProvider } from "@/lib/firebase";
+import type { UserType } from "@/stores/auth/auth.type";
 import { useAuthStore } from "@/stores/auth/useAuth";
 import { useCart } from "@/stores/cart/useCart";
 import { signInWithPopup } from "firebase/auth";
-import type { Dispatch, SetStateAction } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { IoLogoFacebook } from "react-icons/io5";
 
 type LoginProps = {
   open: boolean;
-  onClose: (value:boolean) => void;
+  onClose: (value: boolean) => void;
 };
 
 const LoginModal = ({ open, onClose }: LoginProps) => {
@@ -24,11 +24,15 @@ const LoginModal = ({ open, onClose }: LoginProps) => {
       const result = await signInWithPopup(auth, googleProvider);
       const user = result.user;
       const token = await user.getIdToken();
-      console.log("Google user:", user);
-      console.log("ID token:", token);
-      const res = await verifyFirebase(token);
-      console.log(res);
-      setUserAuth(user, token);
+      const firebaseUser = result.user;
+      const mappedUser: UserType = {
+        firebaseUid: firebaseUser.uid,
+        email: firebaseUser.email ?? "",
+        name: firebaseUser.displayName ?? "",
+      };
+      setUserAuth(mappedUser, token);
+      await verifyFirebase(token);
+      setUserAuth(mappedUser, token);
       fetchCartQty();
       onClose(false);
     } catch (error) {

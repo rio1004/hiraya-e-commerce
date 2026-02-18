@@ -1,3 +1,5 @@
+import type { ColorKey } from "@/pages/market/CardContainer/Card";
+
 export type Category = {
   id: string;
   name: string;
@@ -17,7 +19,7 @@ export type Product = {
 export type ProductVariant = {
   id: string;
   productId: string;
-  color: string;
+  color: ColorKey;
   texture: string;
   walletType: "BIFOLD" | "TRIFOLD" | "CARDHOLDER" | string;
   price: number; // recommended to convert from Decimal
@@ -28,4 +30,4 @@ export type ProductVariant = {
   createdAt: string;
 };
 
-export type ProductsResponse = Product[];
+export type ProductsResponse = { products: Product[] };

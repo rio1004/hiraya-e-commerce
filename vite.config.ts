@@ -6,7 +6,7 @@ import path from "path";
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd());
   const API_URL = env.VITE_API_URL;
-
+  console.log(API_URL);
   return {
     plugins: [react(), tailwindcss()],
     resolve: {

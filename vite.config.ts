@@ -17,7 +17,7 @@ export default defineConfig(({ mode }) => {
     server: {
       proxy: {
         "/api": {
-          target: API_URL,
+          target: "https://hiraya-be.onrender.com",
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api/, ""),
         },

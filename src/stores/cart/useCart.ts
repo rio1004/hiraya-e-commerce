@@ -8,14 +8,17 @@ export const useCart = create<CartType>((set) => ({
     const data = await CartServices.getCartQty();
     set({ cartQty: data.qty.totalQuantity });
   },
-
+  cartLoading: false,
   cartItems: [],
   fetchCartItems: async () => {
+    set({ cartLoading: true });
     try {
       const data = await CartServices.getCartItems();
       set({ cartItems: data.cart.items });
     } catch (error) {
       console.log(error);
+    } finally {
+      set({ cartLoading: false });
     }
   },
 }));

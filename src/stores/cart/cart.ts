@@ -5,4 +5,5 @@ export type CartType = {
   fetchCartQty: () => void;
   cartItems: CartItem[];
   fetchCartItems: () => void;
+  cartLoading: boolean;
 };

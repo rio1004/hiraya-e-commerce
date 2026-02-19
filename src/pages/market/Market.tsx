@@ -2,8 +2,10 @@ import Filters from "./Filters";
 import CardContainer from "./CardContainer";
 import { useState } from "react";
 import { LuListFilter } from "react-icons/lu";
+import MobileFilter from "./Filters/MobileFilter";
 const Market = () => {
   const [expanded, setExpanded] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   console.log(import.meta.env.VITE_API_URL);
   return (
     <>
@@ -36,7 +38,11 @@ const Market = () => {
           <li>Card Holders</li>
         </ul>
       </section>
-      <div className="flex md:hidden items-center justify-start ml-4 gap-2 mt-5 ">
+      <MobileFilter isOpen={isOpen} onClose={() => setIsOpen(false)} />
+      <div
+        className="flex md:hidden items-center justify-start ml-4 gap-2 mt-5"
+        onClick={() => setIsOpen(true)}
+      >
         <LuListFilter size={24} />{" "}
         <p className="tracking-widest font-medium">FILTER</p>
       </div>

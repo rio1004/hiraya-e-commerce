@@ -69,21 +69,23 @@ const LoginModal = ({ open, onClose }: LoginProps) => {
         <span className="h-px w-full bg-ring text-ring"></span>
       </div>
       <div className="flex gap-4">
-        <Button
-          className="w-50! gap-2"
-          variant="outline"
-          onClick={handleGoogleLogin}
-        >
-          <FcGoogle size={24} />
-          Google
+        <Button className="w-50!" variant="outline" onClick={handleGoogleLogin}>
+          <div className="flex gap-2 items-center justify-center">
+            {" "}
+            <FcGoogle size={24} />
+            <p>Google</p>
+          </div>
         </Button>
         <Button
-          className="w-50! gap-2"
+          className="w-50! "
           variant="outline"
           onClick={handleFacebookLogin}
         >
-          <IoLogoFacebook color="#1877F2" size={24} />
-          Facebook
+          <div className="flex gap-2 items-center justify-center">
+            {" "}
+            <IoLogoFacebook color="#1877F2" size={24} />
+            <p>Facebook</p>
+          </div>
         </Button>
       </div>
       <p className="font-light mt-6">

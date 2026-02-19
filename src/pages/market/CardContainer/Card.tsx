@@ -83,13 +83,15 @@ const Card = ({ src, title, price, liked = false }: Props) => {
       </div>
 
       <div className="flex  items-center justify-center flex-col py-4 border-b border-t-0 border-r border-l border-black">
-        <div className="flex w-full items-center justify-center relative">
-          <p className="text-xl">{title}</p>
+        <div className="flex w-full items-center md:justify-center relative">
+          <p className="text-base ml-3 md:ml-0 md:text-xl">{title}</p>
           <div className="absolute right-3">
             <HeartButton liked={liked} />
           </div>
         </div>
-        <p>₱ {price.toFixed(2)}</p>
+        <p className="md:ml-0 self-start ml-3 md:self-center">
+          ₱ {price.toFixed(2)}
+        </p>
 
         <Button onClick={onAddToCart} loading={isLoading}>
           Add to Bag <CiShoppingCart size={20} />

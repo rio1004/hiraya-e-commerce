@@ -37,7 +37,7 @@ const CardContainer = () => {
   }, []);
 
   return (
-    <div className="grid gap-5 grid-cols-1 md:grid-cols-3 lg:grid-cols-4 w-full">
+    <div className="grid gap-5 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full">
       {isLoading ? (
         <div className="flex w-full items-center justify-center col-span-4">
           <ImSpinner className="animate-spin" size={40} />

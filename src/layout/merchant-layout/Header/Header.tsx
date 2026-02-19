@@ -38,27 +38,25 @@ const Header = () => {
     <div>
       <LoginModal onClose={setOpen} open={open} />
 
-      <div className="bg-[#D9D9D9] flex justify-between items-center py-1 ">
-        <p className="opacity-0 hidden md:block ">Hiraya Leather</p>
+      <div className="bg-[#D9D9D9] flex justify-center items-center py-1  text-[12px] md:text-base">
         <p>
-          <span className="font-extrabold text-base tracking-widest">
+          <span className="font-extrabold md:text-base tracking-widest">
             Free Delivery
           </span>{" "}
           for the first order!!!
         </p>
-        <p></p>
       </div>
-      <header className="flex justify-between px-8 py-2 shadow-card">
+      <header className="flex justify-between px-4 md:px-8 py-2 shadow-card">
         <p
-          className="font-bold text text-3xl cursor-pointer text-[#814A2F]"
+          className="font-bold text  text-xl md:text-3xl cursor-pointer text-[#814A2F]"
           onClick={() => navigate("/")}
         >
           HIRAYA LEATHER
         </p>
-        <ul className="flex gap-3 text-xl">
+        {/* <ul className="flex gap-3 text-xl">
           <li className="">Women</li>|<li>Men</li> |<li>Latest</li> |
           <li>Leather Work</li>
-        </ul>
+        </ul> */}
         <div className="flex items-center gap-2 cursor-pointer">
           <CiSearch size={25} />
           <div className="relative" onClick={goToCart}>

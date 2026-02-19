@@ -38,7 +38,7 @@ const Modal = ({ children, open, onClose }: Props) => {
           transition={{ duration: 0.2 }}
         >
           <motion.div
-            className="bg-white w-186 p-6 px-25 flex items-center justify-start flex-col relative"
+            className="bg-white w-full h-full md:h-125 md:w-186 p-6 pt-10 md:pt-6 md:px-25 flex items-center justify-start flex-col relative"
             onClick={(e) => e.stopPropagation()}
             initial={{ scale: 0.9, opacity: 0, y: 20 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}

@@ -69,7 +69,7 @@ const LoginModal = ({ open, onClose }: LoginProps) => {
         <span className="h-px w-full bg-ring text-ring"></span>
       </div>
       <div className="flex gap-4">
-        <Button className="w-50!" variant="outline" onClick={handleGoogleLogin}>
+        <Button className="md:w-50!" variant="outline" onClick={handleGoogleLogin}>
           <div className="flex gap-2 items-center justify-center">
             {" "}
             <FcGoogle size={24} />
@@ -77,7 +77,7 @@ const LoginModal = ({ open, onClose }: LoginProps) => {
           </div>
         </Button>
         <Button
-          className="w-50! "
+          className="md:w-50! "
           variant="outline"
           onClick={handleFacebookLogin}
         >

@@ -1,3 +1,5 @@
+const location_prefix = "/locations";
+const address_pfx = "/addresses";
 export const API_ENDPOINTS = {
   PRODUCTS: {
     GET: "/products",
@@ -14,5 +16,17 @@ export const API_ENDPOINTS = {
   },
   ORDER: {
     GET_ORDERS: "/orders",
+  },
+  LOCATION: {
+    GET_REGIONS: `${location_prefix}/regions`,
+    GET_PROVINCE: (code: string) => `${location_prefix}/provinces/${code}`,
+    GET_CITIES_BY_PROVINCE: (code: string) =>
+      `${location_prefix}/cities/province/${code}`,
+    GET_CITIES_BY_REGION: (code: string) =>
+      `${location_prefix}/cities/region/${code}`,
+    GET_BRGY: (code: string) => `${location_prefix}/barangays/${code}`,
+  },
+  ADDRESSS: {
+    CREATE_ADDRESS: `${address_pfx}`,
   },
 };

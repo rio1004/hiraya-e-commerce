@@ -3,10 +3,10 @@ import { AiOutlineDown } from "react-icons/ai";
 import type { Control, FieldValues, Path } from "react-hook-form";
 import { Controller, useFormContext } from "react-hook-form";
 
-type Option = { value: string; label: string };
+export type SelectOption = { value: string; label: string };
 
 type DropdownInputProps<T extends FieldValues> = {
-  options: Option[];
+  options: SelectOption[];
   value?: string; // for standalone mode
   onChange?: (value: string) => void; // for standalone mode
   placeholder?: string;

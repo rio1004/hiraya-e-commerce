@@ -1,22 +1,34 @@
-import axios from "axios";
-
-const api = "https://psgc.gitlab.io/api";
+import { axiosInstance } from "@/api/axiosInstance";
+import { API_ENDPOINTS } from "@/api/endpoints";
+import type { Regions } from "./location.type";
 
 export const LocationServices = {
   getRegions: async () => {
-    const res = await axios.get(`${api}/regions`);
+    const res = await axiosInstance.get<Promise<Regions>>(
+      API_ENDPOINTS.LOCATION.GET_REGIONS,
+    );
     return res.data;
   },
-  getProvinces: async () => {
-    const res = await axios.get(`${api}/provinces`);
+  getProvinces: async (code: string) => {
+    const res = await axiosInstance.get(
+      API_ENDPOINTS.LOCATION.GET_PROVINCE(code),
+    );
     return res.data;
   },
-  getCities: async () => {
-    const res = await axios.get(`${api}/cities`);
+  getCitiesByProvince: async (code: string) => {
+    const res = await axiosInstance.get(
+      API_ENDPOINTS.LOCATION.GET_CITIES_BY_PROVINCE(code),
+    );
     return res.data;
   },
-  getMunicipalities: async (provinceCode: string) => {
-    const res = await axios.get(`${api}/provinces/${provinceCode}/municipalites`);
+  getCitiesByRegion: async (code: string) => {
+    const res = await axiosInstance.get(
+      API_ENDPOINTS.LOCATION.GET_CITIES_BY_REGION(code),
+    );
+    return res.data;
+  },
+  getBrgy: async (code: string) => {
+    const res = await axiosInstance.get(API_ENDPOINTS.LOCATION.GET_BRGY(code));
     return res.data;
   },
 };

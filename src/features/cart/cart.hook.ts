@@ -5,7 +5,6 @@ import type {
   CartItem,
   CartQueryResult,
   CartResponse,
-  WalletVariant,
 } from "./cart";
 
 export function useCartQty() {

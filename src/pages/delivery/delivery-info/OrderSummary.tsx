@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import { ProductCard } from "./ProductCard";
 import Divider from "@/components/Divider";
 import { useCartItems } from "@/features/cart/cart.hook";
@@ -16,17 +16,19 @@ const orderItems = (items: { title: string; value: string }) => {
 const OrderSummary = () => {
   const placedItems = useCart((state) => state.placedItems);
   const [deliveryFee, setDeliveryFee] = useState<number>(0);
-
   const { data, isLoading } = useCartItems(placedItems);
 
-  useEffect(() => {}, [deliveryFee]);
-
-const totalPrice = deliveryFee + (data?.subTotal || 0);
+  const totalPrice = deliveryFee + (data?.subTotal || 0);
   console.log(data);
   return (
     <div className="flex flex-col gap-2">
       <div className="bg-[#f4f4f4] w-[350px] flex flex-col p-4 px-6">
-        <p className="text-center font-semibold">Order summary</p>
+        <p
+          className="text-center font-semibold"
+          onClick={() => setDeliveryFee(0)}
+        >
+          Order summary
+        </p>
         <Divider classname="my-2" />
         {orderItems({
           title: "Subtotal",

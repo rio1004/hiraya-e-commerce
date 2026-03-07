@@ -63,7 +63,7 @@ const DeliveryInfo = () => {
           <OrderSummary />
         </div>
       </div>
-      <Button className="mt-10 px-12">Proceed to payment</Button>
+      <Button className="mt-10 px-20 py-3 text-xl">Proceed to payment</Button>
     </div>
   );
 };

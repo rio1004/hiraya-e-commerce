@@ -41,7 +41,7 @@ const Card = ({ src, title, price, liked = false }: Props) => {
         fetchCartQty();
         return;
       }
-    } catch (error: any) {
+    } catch (error) {
       console.log(error);
     } finally {
       setIsLoading(false);

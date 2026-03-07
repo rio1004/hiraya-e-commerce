@@ -1,11 +1,7 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { CartServices } from "./cart.service";
 import { useToast } from "@/stores/toast/useToast";
-import type {
-  CartItem,
-  CartQueryResult,
-  CartResponse,
-} from "./cart";
+import type { CartItem, CartQueryResult, CartResponse } from "./cart";
 
 export function useCartQty() {
   return useQuery({

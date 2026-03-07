@@ -32,7 +32,7 @@ const Input = ({
           {...registration}
           {...props}
           type={isPassword && showPassword ? "text" : type}
-          className={`border py-2 px-4.5 w-full pr-12  transition
+          className={`border py-2 px-4.5 w-full pr-12 transition
             ${error ? "border-red-500 focus:ring-red-500" : "border-ring"}
             focus:outline-none focus:ring-1
             ${className}`}

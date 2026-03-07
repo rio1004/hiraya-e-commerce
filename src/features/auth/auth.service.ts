@@ -1,5 +1,5 @@
-import { axiosInstance } from "../axiosInstance";
-import { API_ENDPOINTS } from "../endpoints";
+import { axiosInstance } from "../../api/axiosInstance";
+import { API_ENDPOINTS } from "../../api/endpoints";
 
 export const AuthServices = {
   verifyFirebase: async (token: string) => {

@@ -1,5 +1,6 @@
-import { axiosInstance } from "../axiosInstance";
-import { API_ENDPOINTS } from "../endpoints";
+import { axiosInstance } from "../../api/axiosInstance";
+import { API_ENDPOINTS } from "../../api/endpoints";
+import type { CartResponse } from "./cart";
 
 export const CartServices = {
   getCartQty: async () => {
@@ -13,8 +14,14 @@ export const CartServices = {
     });
     return res.data;
   },
-  getCartItems: async () => {
-    const res = await axiosInstance.get(API_ENDPOINTS.CART.GET_CART_ITEMS);
+  getCartItems: async (ids?: string[]) => {
+    let queryString = "";
+    if (ids && ids?.length > 0) {
+      queryString = ids?.join(",");
+    }
+    const res = await axiosInstance.get<Promise<CartResponse>>(
+      API_ENDPOINTS.CART.GET_CART_ITEMS(queryString),
+    );
     console.log(res);
     return res.data;
   },

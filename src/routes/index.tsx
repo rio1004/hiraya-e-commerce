@@ -1,5 +1,6 @@
 import MainLayout from "@/layout/merchant-layout";
 import Cart from "@/pages/cart";
+import DeliveryInfo from "@/pages/delivery/delivery-info";
 import Market from "@/pages/market/Market";
 // import AboutPage from "@/pages/TestPages/about";
 // import Debounce from "@/pages/TestPages/Debounce";
@@ -12,6 +13,7 @@ const App = () => {
       <Route path="/" element={<MainLayout />}>
         <Route index element={<Market />} />
         <Route path="cart" element={<Cart />} />
+        <Route path="delivery-info" element={<DeliveryInfo />} />
       </Route>
       {/* <Route path="/about" element={<AboutPage />} />
       <Route path="/test">

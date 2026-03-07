@@ -1,6 +1,6 @@
-import { axiosInstance } from "../axiosInstance";
-import { API_ENDPOINTS } from "../endpoints";
-import type { ProductsResponse } from "./types/product";
+import { axiosInstance } from "../../api/axiosInstance";
+import { API_ENDPOINTS } from "../../api/endpoints";
+import type { ProductsResponse } from "./product";
 
 export const ProductService = {
   getProducts: async () => {

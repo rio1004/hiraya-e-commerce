@@ -1,7 +1,6 @@
-import { RiCloseLargeFill } from "react-icons/ri";
 import { PiUserCircleLight, PiSignOut } from "react-icons/pi";
 import { TfiPackage } from "react-icons/tfi";
-import { RiUserLocationLine } from "react-icons/ri";
+import { RiCloseLargeFill, RiUserLocationLine } from "react-icons/ri";
 import { motion, AnimatePresence } from "motion/react";
 import { useAuthStore } from "@/stores/auth/useAuth";
 import { useToast } from "@/stores/toast/useToast";

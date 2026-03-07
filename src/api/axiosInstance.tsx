@@ -25,7 +25,6 @@ axiosInstance.interceptors.response.use(
     if (error.response?.status === 401) {
       useAuthStore.getState().logout();
       setOpenLogin(true);
-      return;
     }
     return Promise.reject(error);
   },

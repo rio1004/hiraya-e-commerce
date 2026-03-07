@@ -1,4 +1,4 @@
-import { AuthServices } from "@/api/services/auth.service";
+import { AuthServices } from "@/features/auth/auth.service";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
 import Modal from "@/components/Modal";

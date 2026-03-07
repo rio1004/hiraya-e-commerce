@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Card from "./Card";
-import { ProductService } from "@/api/services/product.service";
-import type { Product } from "@/api/services/types/product";
+import { ProductService } from "@/features/product/product.service";
+import type { Product } from "@/features/product/product";
 import { ImSpinner } from "react-icons/im";
 
 const CardContainer = () => {

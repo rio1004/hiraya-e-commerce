@@ -1,4 +1,4 @@
-import { CartServices } from "@/api/services/cart.service";
+import { CartServices } from "@/features/cart/cart.service";
 import Button from "@/components/Button";
 import HeartButton from "@/components/HeartButton";
 import { CiShoppingCart } from "react-icons/ci";
@@ -7,7 +7,7 @@ import "swiper/css";
 import { useState } from "react";
 import { useCart } from "@/stores/cart/useCart";
 import { useToast } from "@/stores/toast/useToast";
-import type { ProductVariant } from "@/api/services/types/product";
+import type { ProductVariant } from "@/features/product/product";
 type Props = {
   src: ProductVariant[];
   title: string;

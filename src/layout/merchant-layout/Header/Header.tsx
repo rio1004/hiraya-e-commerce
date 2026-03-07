@@ -53,10 +53,6 @@ const Header = () => {
         >
           HIRAYA LEATHER
         </p>
-        {/* <ul className="flex gap-3 text-xl">
-          <li className="">Women</li>|<li>Men</li> |<li>Latest</li> |
-          <li>Leather Work</li>
-        </ul> */}
         <div className="flex items-center gap-2 cursor-pointer">
           <CiSearch size={25} />
           <div className="relative" onClick={goToCart}>

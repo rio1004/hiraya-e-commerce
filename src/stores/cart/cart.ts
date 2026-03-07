@@ -1,9 +1,12 @@
-import type { CartItem } from "@/api/services/types/cart";
+import type { CartItem } from "@/features/cart/cart";
 
 export type CartType = {
   cartQty: number;
   fetchCartQty: () => void;
   cartItems: CartItem[];
-  fetchCartItems: () => void;
+  fetchCartItems: (ids?: string[]) => void;
   cartLoading: boolean;
+  placedItems: string[];
+  setPlacedItems: (value: string) => void;
+  removePlaceItems: (value: string) => void;
 };

@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import type { CartType } from "./cart";
-import { CartServices } from "@/api/services/cart.service";
+import { CartServices } from "@/features/cart/cart.service";
 
 export const useCart = create<CartType>((set) => ({
   cartQty: 0,
@@ -10,15 +10,26 @@ export const useCart = create<CartType>((set) => ({
   },
   cartLoading: false,
   cartItems: [],
-  fetchCartItems: async () => {
+  fetchCartItems: async (ids) => {
     set({ cartLoading: true });
     try {
-      const data = await CartServices.getCartItems();
+      const data = await CartServices.getCartItems(ids);
       set({ cartItems: data.cart.items });
     } catch (error) {
       console.log(error);
     } finally {
       set({ cartLoading: false });
     }
+  },
+  placedItems: [],
+  setPlacedItems: (value: string) => {
+    set((state) => ({
+      placedItems: [...state.placedItems, value],
+    }));
+  },
+  removePlaceItems: (value: string) => {
+    set((state) => ({
+      placedItems: state.placedItems.filter((item) => item != value),
+    }));
   },
 }));

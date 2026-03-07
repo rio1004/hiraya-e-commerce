@@ -24,3 +24,7 @@ export interface CartContainer {
 export interface CartResponse {
   cart: CartContainer;
 }
+export type CartQueryResult = {
+  subTotal: number;
+  items: CartItem[];
+};
